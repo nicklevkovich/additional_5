@@ -1,20 +1,12 @@
 module.exports = function check(str, bracketsConfig) {
-var a = str.split("");
-var al = a.length;
-for (i=0; i<(2*al);i++) {
-  for (j=0; j<al;j++) {
-    if (((a[j]==='(')&&(a[j+1]===')'))
-      ||((a[j]==='[')&&(a[j+1]===']'))
-      ||((a[j]==='{')&&(a[j+1]==='}'))
-      ||((a[j]==='1')&&(a[j+1]==='2'))
-      ||((a[j]==='3')&&(a[j+1]==='4'))
-      ||((a[j]==='5')&&(a[j+1]==='6'))
-      ||((a[j]==='7')&&(a[j+1]==='7'))
-      ||((a[j]==='8')&&(a[j+1]==='8'))
-      ||((a[j]==='|')&&(a[j+1]==='|'))) a.splice(j,2);
+  let string = str;
+  for (let j = 0; j < 5; j++)
+  for (let i = 0; i < bracketsConfig.length; i++) {
+    let bracketsPair = bracketsConfig[i][0]+bracketsConfig[i][1];
+    while (true) {
+      if (string.includes(bracketsPair)) string = string.replace(bracketsPair, '')
+      else break;
+    }
   }
-}
-
- if (a.length===0) return(1)
-  else return(0);
-}
+  return (string.length === 0)
+  }
